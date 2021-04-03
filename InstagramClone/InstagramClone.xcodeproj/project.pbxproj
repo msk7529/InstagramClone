@@ -13,6 +13,7 @@
 		C2E9F6952618B93200D31B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E9F6932618B93200D31B50 /* Main.storyboard */; };
 		C2E9F6972618B93200D31B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E9F6962618B93200D31B50 /* Assets.xcassets */; };
 		C2E9F69A2618B93200D31B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E9F6982618B93200D31B50 /* LaunchScreen.storyboard */; };
+		C2E9F6A92618B9E100D31B50 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F6A82618B9E100D31B50 /* MainTabController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C2E9F6962618B93200D31B50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2E9F6992618B93200D31B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2E9F69B2618B93200D31B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2E9F6A82618B9E100D31B50 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,12 @@
 		C2E9F68C2618B93200D31B50 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				C2E9F6A72618B9AD00D31B50 /* Model */,
+				C2E9F6A62618B9AC00D31B50 /* View */,
+				C2E9F6A52618B9AB00D31B50 /* ViewModel */,
+				C2E9F6A42618B9AA00D31B50 /* Controller */,
+				C2E9F6A32618B9A900D31B50 /* API */,
+				C2E9F6A22618B9A700D31B50 /* Utils */,
 				C2E9F68D2618B93200D31B50 /* AppDelegate.swift */,
 				C2E9F68F2618B93200D31B50 /* SceneDelegate.swift */,
 				C2E9F6912618B93200D31B50 /* ViewController.swift */,
@@ -65,6 +73,49 @@
 				C2E9F69B2618B93200D31B50 /* Info.plist */,
 			);
 			path = InstagramClone;
+			sourceTree = "<group>";
+		};
+		C2E9F6A22618B9A700D31B50 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C2E9F6A32618B9A900D31B50 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C2E9F6A42618B9AA00D31B50 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C2E9F6A82618B9E100D31B50 /* MainTabController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C2E9F6A52618B9AB00D31B50 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C2E9F6A62618B9AC00D31B50 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2E9F6A72618B9AD00D31B50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +190,7 @@
 			files = (
 				C2E9F6922618B93200D31B50 /* ViewController.swift in Sources */,
 				C2E9F68E2618B93200D31B50 /* AppDelegate.swift in Sources */,
+				C2E9F6A92618B9E100D31B50 /* MainTabController.swift in Sources */,
 				C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
