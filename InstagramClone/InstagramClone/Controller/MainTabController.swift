@@ -20,7 +20,8 @@ final class MainTabController: UITabBarController {
     private func configureViewControllers() {
         self.view.backgroundColor = .systemBackground
         
-        let feedVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "home_unselected")!, selectedImg: UIImage(named: "home_selected")!, rootVC: FeedController())
+        let feedVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "home_unselected")!, selectedImg: UIImage(named: "home_selected")!, rootVC: FeedController(collectionViewLayout: UICollectionViewFlowLayout()))
+        // collectionVC는 생성시에 반드시 flowLayout을 지정해주어야 함(layout말고 flowLayout으로.)
         let searchVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "search_unselected")!, selectedImg: UIImage(named: "search_selected")!, rootVC: SearchController())
         let imageSelectorVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "plus_unselected")!, selectedImg: UIImage(named: "plus_unselected")!, rootVC: ImageSelectorController())
         let notificationVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "like_unselected")!, selectedImg: UIImage(named: "like_selected")!, rootVC: NotificationController())
