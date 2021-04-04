@@ -8,29 +8,29 @@
 
 import UIKit
 
-/*
-import JGProgressHUD
+
+//import JGProgressHUD
 
 extension UIViewController {
-    static let hud = JGProgressHUD(style: .dark)
+    //static let hud = JGProgressHUD(style: .dark)
     
     func configureGradientLayer() {
-        let gradient = CAGradientLayer()
+        let gradient: CAGradientLayer = .init()
         gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
-        gradient.locations = [0, 1]
+        gradient.locations = [0, 1]     // 처음부터 끝까지
         view.layer.addSublayer(gradient)
         gradient.frame = view.frame
     }
     
-    func showLoader(_ show: Bool) {
-        view.endEditing(true)
-        
-        if show {
-            UIViewController.hud.show(in: view)
-        } else {
-            UIViewController.hud.dismiss()
-        }
-    }
+//    func showLoader(_ show: Bool) {
+//        view.endEditing(true)
+//
+//        if show {
+//            UIViewController.hud.show(in: view)
+//        } else {
+//            UIViewController.hud.dismiss()
+//        }
+//    }
     
     func showMessage(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -38,7 +38,7 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
-*/
+
 
 extension UIButton {
     func attributedTitle(firstPart: String, secondPart: String) {

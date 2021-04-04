@@ -56,11 +56,10 @@ final class LoginController: UIViewController {
         return stackView
     }()
     
-    
-    
     private let downHaveAccountButton: UIButton = {
         let button: UIButton = .init(type: .system)
         button.attributedTitle(firstPart: "Don't have an account?", secondPart: "Sign Up")
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -78,12 +77,7 @@ final class LoginController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black   // 네비게이션바에 light tint를 적용한다.
         
-        let gredient: CAGradientLayer = .init()
-        gredient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
-        gredient.locations = [0, 1]     // 처음부터 끝까지
-        
-        self.view.layer.addSublayer(gredient)
-        gredient.frame = self.view.frame
+        self.configureGradientLayer()
         
         self.view.addSubview(iconImage)
         self.view.addSubview(stackView)
@@ -100,5 +94,11 @@ final class LoginController: UIViewController {
         
         downHaveAccountButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         downHaveAccountButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+    // - MARK: Actions
+    @objc private func handleShowSignUp() {
+        let registrationVC: RegistrationController = .init()
+        navigationController?.pushViewController(registrationVC, animated: true)
     }
 }
