@@ -10,6 +10,8 @@ import UIKit
 final class LoginController: UIViewController {
     
     // - MARK: Properties
+    private var viewModel: LoginViewModel = .init()
+    
     private let iconImage: UIImageView = {
         let imageView: UIImageView = .init(image: UIImage(named: "Instagram_logo_white"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,9 +33,10 @@ final class LoginController: UIViewController {
     
     private let loginButton: UIButton = {
         let button: UIButton = .init(type: .system)
+        button.isEnabled = false
         button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        button.setTitleColor(UIColor(white: 1, alpha: 0.67), for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5)
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -69,6 +72,7 @@ final class LoginController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureNotificationObservers()
     }
     
     // - MARK: Helpers
@@ -96,9 +100,26 @@ final class LoginController: UIViewController {
         downHaveAccountButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
+    private func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
     // - MARK: Actions
     @objc private func handleShowSignUp() {
         let registrationVC: RegistrationController = .init()
         navigationController?.pushViewController(registrationVC, animated: true)
+    }
+    
+    @objc private func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else {
+            viewModel.password = sender.text
+        }
+        
+        loginButton.backgroundColor = viewModel.buttonBackgroundColor
+        loginButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
+        loginButton.isEnabled = viewModel.formIsValid
     }
 }
