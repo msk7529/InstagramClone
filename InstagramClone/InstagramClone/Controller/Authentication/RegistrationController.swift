@@ -16,6 +16,7 @@ final class RegistrationController: UIViewController {
         let button: UIButton = .init(type: .system)
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
         button.tintColor = .white
+        button.addTarget(self, action: #selector(handleProfilePhotoSelect), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -109,6 +110,14 @@ final class RegistrationController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc private func handleProfilePhotoSelect() {
+        let picker: UIImagePickerController = .init()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        self.present(picker, animated: true, completion: nil)
+    }
+    
     @objc private func textDidChange(sender: UITextField) {
         if sender == emailTextField {
             viewModel.email = sender.text
@@ -129,5 +138,20 @@ extension RegistrationController: FormViewModel {
         signUpButton.backgroundColor = viewModel.buttonBackgroundColor
         signUpButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
         signUpButton.isEnabled = viewModel.formIsValid
+    }
+}
+
+// - MARK: UIImagePickerControllerDelegate
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        
+        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2    // 적용안하면 버튼이 사각형으로 노출됨
+        plusPhotoButton.layer.masksToBounds = true  // false이면 버튼 layer에 짤리지 않은 상태로 노출됨
+        plusPhotoButton.layer.borderColor = UIColor.white.cgColor
+        plusPhotoButton.layer.borderWidth = 2
+        plusPhotoButton.setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
