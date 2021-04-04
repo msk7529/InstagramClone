@@ -23,6 +23,7 @@
 		C2E9F7422618D00900D31B50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F7412618D00900D31B50 /* Extensions.swift */; };
 		C2E9F7462619F93B00D31B50 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F7452619F93B00D31B50 /* LoginController.swift */; };
 		C2E9F74A2619F94B00D31B50 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F7492619F94B00D31B50 /* RegistrationController.swift */; };
+		C2E9F74D261A071800D31B50 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F74C261A071800D31B50 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		C2E9F7412618D00900D31B50 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C2E9F7452619F93B00D31B50 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C2E9F7492619F94B00D31B50 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		C2E9F74C261A071800D31B50 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E9F73D2618CE9B00D31B50 /* FeedCell.swift */,
+				C2E9F74C261A071800D31B50 /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2E9F74D261A071800D31B50 /* CustomTextField.swift in Sources */,
 				C2E9F6922618B93200D31B50 /* ViewController.swift in Sources */,
 				C2E9F7462619F93B00D31B50 /* LoginController.swift in Sources */,
 				C2E9F73E2618CE9B00D31B50 /* FeedCell.swift in Sources */,

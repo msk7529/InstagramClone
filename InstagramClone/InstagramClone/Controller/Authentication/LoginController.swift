@@ -17,34 +17,15 @@ final class LoginController: UIViewController {
         return imageView
     }()
     
-    private let emailTextField: UITextField = {
-        let textField: UITextField = .init()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 50))
-        textField.leftViewMode = .always
-        textField.borderStyle = .none
-        textField.textColor = .white
-        textField.keyboardAppearance = .dark
+    private let emailTextField: CustomTextField = {
+        let textField: CustomTextField = .init(placeholder: "Email")
         textField.keyboardType = .emailAddress
-        textField.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        textField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.7)])
-        textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return textField
     }()
     
-    private let passwordTextField: UITextField = {
-        let textField: UITextField = .init()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 50))
-        textField.leftViewMode = .always
-        textField.borderStyle = .none
-        textField.textColor = .white
-        textField.keyboardAppearance = .dark
-        textField.keyboardType = .emailAddress
-        textField.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.7)])
+    private let passwordTextField: CustomTextField = {
+        let textField: CustomTextField = .init(placeholder: "Password")
         textField.isSecureTextEntry = true
-        textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return textField
     }()
     
@@ -62,12 +43,7 @@ final class LoginController: UIViewController {
     
     private let forgotPasswordButton: UIButton = {
         let button: UIButton = .init(type: .system)
-        let attr: [NSAttributedString.Key : Any] = [.foregroundColor : UIColor(white: 1, alpha: 0.7), .font : UIFont.systemFont(ofSize: 16)]
-        let boldAttr: [NSAttributedString.Key : Any] = [.foregroundColor : UIColor(white: 1, alpha: 0.7), .font : UIFont.boldSystemFont(ofSize: 16)]
-        let attributedTitle: NSMutableAttributedString = .init(string: "Forgot your password? ", attributes: attr)
-        attributedTitle.append(NSAttributedString(string: "Get help signing in.", attributes: boldAttr))
-        
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.attributedTitle(firstPart: "Forgot your password?", secondPart: "Get help signing in.")
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -84,12 +60,7 @@ final class LoginController: UIViewController {
     
     private let downHaveAccountButton: UIButton = {
         let button: UIButton = .init(type: .system)
-        let attr: [NSAttributedString.Key : Any] = [.foregroundColor : UIColor(white: 1, alpha: 0.7), .font : UIFont.systemFont(ofSize: 16)]
-        let boldAttr: [NSAttributedString.Key : Any] = [.foregroundColor : UIColor(white: 1, alpha: 0.7), .font : UIFont.boldSystemFont(ofSize: 16)]
-        let attributedTitle: NSMutableAttributedString = .init(string: "Don't have an account?  ", attributes: attr)
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: boldAttr))
-        
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.attributedTitle(firstPart: "Don't have an account?", secondPart: "Sign Up")
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
