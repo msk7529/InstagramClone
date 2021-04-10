@@ -41,6 +41,7 @@ final class LoginController: UIViewController {
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -106,6 +107,20 @@ final class LoginController: UIViewController {
     }
     
     // - MARK: Actions
+    @objc private func handleLogin() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthService.logUserIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("DEBUG: Failed to log user in \(error.localizedDescription)")
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     @objc private func handleShowSignUp() {
         let registrationVC: RegistrationController = .init()
         navigationController?.pushViewController(registrationVC, animated: true)
