@@ -11,6 +11,7 @@ final class RegistrationController: UIViewController {
     
     // - MARK: Properties
     private var viewModel: RegistrationViewModel = .init()
+    private var profileImage: UIImage?
     
     private let plusPhotoButton: UIButton = {
         let button: UIButton = .init(type: .system)
@@ -41,11 +42,13 @@ final class RegistrationController: UIViewController {
         button.isEnabled = false
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5)
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.addTarget(self, action: #selector(handleSignUP), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
@@ -106,6 +109,18 @@ final class RegistrationController: UIViewController {
     }
     
     // - MARK: Actions
+    @objc private func handleSignUP() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
+        guard let profileImage = profileImage else { return }
+        
+        let credentials: AuthCredentials = .init(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
+
+        AuthService.registerUser(withCredential: credentials)
+    }
+    
     @objc private func handleShowLogin() {
         navigationController?.popViewController(animated: true)
     }
@@ -145,6 +160,7 @@ extension RegistrationController: FormViewModel {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        profileImage = selectedImage
         
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2    // 적용안하면 버튼이 사각형으로 노출됨
         plusPhotoButton.layer.masksToBounds = true  // false이면 버튼 layer에 짤리지 않은 상태로 노출됨
