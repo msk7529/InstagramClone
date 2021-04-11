@@ -11,6 +11,8 @@
 		C27EEF17262208B700C7749A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C27EEF16262208B700C7749A /* GoogleService-Info.plist */; };
 		C27EEF3A2622141300C7749A /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF392622141300C7749A /* ImageUploader.swift */; };
 		C27EEF3D2622141B00C7749A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF3C2622141B00C7749A /* AuthService.swift */; };
+		C27EEF4026232FB800C7749A /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF3F26232FB800C7749A /* ProfileCell.swift */; };
+		C27EEF4426232FDA00C7749A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF4326232FDA00C7749A /* ProfileHeader.swift */; };
 		C2E9F68E2618B93200D31B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F68D2618B93200D31B50 /* AppDelegate.swift */; };
 		C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F68F2618B93200D31B50 /* SceneDelegate.swift */; };
 		C2E9F6922618B93200D31B50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F6912618B93200D31B50 /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 		C27EEF16262208B700C7749A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C27EEF392622141300C7749A /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		C27EEF3C2622141B00C7749A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		C27EEF3F26232FB800C7749A /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		C27EEF4326232FDA00C7749A /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		C2E9F68A2618B93200D31B50 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E9F68D2618B93200D31B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2E9F68F2618B93200D31B50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,15 @@
 				EB35DACBCA938D1C8BDA2560 /* Pods_InstagramClone.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C27EEF4226232FCA00C7749A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C27EEF3F26232FB800C7749A /* ProfileCell.swift */,
+				C27EEF4326232FDA00C7749A /* ProfileHeader.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		C2E9F6812618B93200D31B50 = {
@@ -170,6 +183,7 @@
 		C2E9F6A62618B9AC00D31B50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C27EEF4226232FCA00C7749A /* Profile */,
 				C2E9F73D2618CE9B00D31B50 /* FeedCell.swift */,
 				C2E9F74C261A071800D31B50 /* CustomTextField.swift */,
 			);
@@ -308,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2E9F74D261A071800D31B50 /* CustomTextField.swift in Sources */,
+				C27EEF4426232FDA00C7749A /* ProfileHeader.swift in Sources */,
 				C2E9F6922618B93200D31B50 /* ViewController.swift in Sources */,
 				C2E9F7462619F93B00D31B50 /* LoginController.swift in Sources */,
 				C2E9F73E2618CE9B00D31B50 /* FeedCell.swift in Sources */,
@@ -322,6 +337,7 @@
 				C2E9F7422618D00900D31B50 /* Extensions.swift in Sources */,
 				C27EEF3A2622141300C7749A /* ImageUploader.swift in Sources */,
 				C27EEF3D2622141B00C7749A /* AuthService.swift in Sources */,
+				C27EEF4026232FB800C7749A /* ProfileCell.swift in Sources */,
 				C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */,
 				C2E9F74A2619F94B00D31B50 /* RegistrationController.swift in Sources */,
 			);
