@@ -11,31 +11,29 @@ final class ProfileController: UICollectionViewController {
     
     // MARK: - Properties
     
-    var user: User? {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    private var user: User
     
     // MARK: - Life Cycle
+    init(user: User) {
+        self.user = user
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureCollectionView()
-        fetchUser()
     }
     
     // MARK: - API
-    private func fetchUser() {
-        UserService.fetchUsers { user in
-            self.user = user
-            self.navigationItem.title = user.username
-        }
-    }
-
     
     // MARK: - Helpers
     private func configureCollectionView() {
+        navigationItem.title = user.fullname
         collectionView.backgroundColor = .systemBackground
         collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCell.identifier)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
@@ -63,11 +61,7 @@ extension ProfileController {
             return UICollectionReusableView()
         }
         
-        if let user = user {
-            header.viewModel = ProfileHeaderViewModel(user: user)
-        } else {
-            print("DEBUG: User not yet set")
-        }
+        header.viewModel = ProfileHeaderViewModel(user: user)
         return header
     }
 }

@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol AuthenticationDelegate: class {
+    func authenticationDidComplete()
+}
+
 final class LoginController: UIViewController {
     
     // - MARK: Properties
     private var viewModel: LoginViewModel = .init()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImage: UIImageView = {
         let imageView: UIImageView = .init(image: UIImage(named: "Instagram_logo_white"))
@@ -117,12 +122,13 @@ final class LoginController: UIViewController {
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationDidComplete()
         }
     }
     
     @objc private func handleShowSignUp() {
         let registrationVC: RegistrationController = .init()
+        registrationVC.delegate = delegate
         navigationController?.pushViewController(registrationVC, animated: true)
     }
     
