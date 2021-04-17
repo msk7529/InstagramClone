@@ -10,13 +10,28 @@ import UIKit
 final class ProfileController: UICollectionViewController {
     
     // MARK: - Properties
-
+    
+    var user: User? {
+        didSet {
+            navigationItem.title = user?.username
+        }
+    }
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureCollectionView()
+        fetchUser()
     }
+    
+    // MARK: - API
+    private func fetchUser() {
+        UserService.fetchUsers { user in
+            self.user = user
+        }
+    }
+
     
     // MARK: - Helpers
     private func configureCollectionView() {
