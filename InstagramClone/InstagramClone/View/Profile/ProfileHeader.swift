@@ -5,22 +5,15 @@
 //  Created by kakao on 2021/04/11.
 //
 import UIKit
-import SDWebImage
 
 final class ProfileHeader: UICollectionReusableView {
     // MARK: - Properties
     static let identifier: String = "ProfileHeader"
 
-    var viewModel: ProfileHeaderViewModel? {
-        didSet {
-            configure()
-        }
-    }
-    
     private let profileImageView: UIImageView = {
         let imageView: UIImageView = .init()
+        imageView.image = UIImage(named: "venom-7")
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .lightGray
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -28,6 +21,7 @@ final class ProfileHeader: UICollectionReusableView {
     
     private let nameLabel: UILabel = {
         let label: UILabel = .init()
+        label.text = "MinSeop"
         label.font = .boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -182,13 +176,6 @@ final class ProfileHeader: UICollectionReusableView {
     }
     
     // MARK : - Helpers
-    private func configure() {
-        guard let viewModel = viewModel else { return }
-        
-        nameLabel.text = viewModel.fullname
-        profileImageView.sd_setImage(with: viewModel.profileImageUrl, completed: nil)
-    }
-    
     private func attributedStatText(value: Int, label: String) -> NSAttributedString {
         let attributedText: NSMutableAttributedString = .init(string: "\(value)\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: label, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.lightGray]))

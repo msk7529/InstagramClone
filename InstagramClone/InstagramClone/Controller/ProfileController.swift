@@ -13,7 +13,7 @@ final class ProfileController: UICollectionViewController {
     
     var user: User? {
         didSet {
-            collectionView.reloadData()
+            navigationItem.title = user?.username
         }
     }
     
@@ -29,7 +29,6 @@ final class ProfileController: UICollectionViewController {
     private func fetchUser() {
         UserService.fetchUsers { user in
             self.user = user
-            self.navigationItem.title = user.username
         }
     }
 
@@ -58,15 +57,8 @@ extension ProfileController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        print("DEBUG: Did call header function...")
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.identifier, for: indexPath) as? ProfileHeader else {
             return UICollectionReusableView()
-        }
-        
-        if let user = user {
-            header.viewModel = ProfileHeaderViewModel(user: user)
-        } else {
-            print("DEBUG: User not yet set")
         }
         return header
     }
