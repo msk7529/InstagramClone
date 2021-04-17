@@ -34,6 +34,7 @@ final class FeedController: UICollectionViewController {
             
             DispatchQueue.main.async {
                 let controller: LoginController = .init()
+                controller.delegate = self.tabBarController as? MainTabController
                 let nav: UINavigationController = .init(rootViewController: controller)
                 nav.modalPresentationStyle = . fullScreen
                 self.present(nav, animated: true, completion: nil)
