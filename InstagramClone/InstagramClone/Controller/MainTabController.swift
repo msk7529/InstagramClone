@@ -21,8 +21,8 @@ final class MainTabController: UITabBarController {
     // MARK: API
     private func checkIfUserIsLoggedIn() {
         // API 호출이 비동기적으로 메인큐가 아닌 다른 스레드에서 발생할 수 있으므로, LoginController를 메인큐에서 호출함을 보장하기 위해 main thread에서 수행을 강제한다.
-        DispatchQueue.main.async {
-            if Auth.auth().currentUser == nil {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
                 let controller: LoginController = .init()
                 let nav: UINavigationController = .init(rootViewController: controller)
                 nav.modalPresentationStyle = . fullScreen

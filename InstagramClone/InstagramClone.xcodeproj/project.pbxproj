@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		71A79200497EBB14F676D4BF /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB35DACBCA938D1C8BDA2560 /* Pods_InstagramClone.framework */; };
+		C27E0313262B6AB600C7749A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0312262B6AB600C7749A /* UserService.swift */; };
+		C27E0316262B6B2F00C7749A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0315262B6B2F00C7749A /* Constants.swift */; };
+		C27E0319262B6D1300C7749A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0318262B6D1200C7749A /* User.swift */; };
 		C27EEF17262208B700C7749A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C27EEF16262208B700C7749A /* GoogleService-Info.plist */; };
 		C27EEF3A2622141300C7749A /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF392622141300C7749A /* ImageUploader.swift */; };
 		C27EEF3D2622141B00C7749A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF3C2622141B00C7749A /* AuthService.swift */; };
@@ -35,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		4205C6775079BDAD21814D5F /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
+		C27E0312262B6AB600C7749A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		C27E0315262B6B2F00C7749A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C27E0318262B6D1200C7749A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C27EEF16262208B700C7749A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C27EEF392622141300C7749A /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		C27EEF3C2622141B00C7749A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E9F7412618D00900D31B50 /* Extensions.swift */,
+				C27E0315262B6B2F00C7749A /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 			children = (
 				C27EEF392622141300C7749A /* ImageUploader.swift */,
 				C27EEF3C2622141B00C7749A /* AuthService.swift */,
+				C27E0312262B6AB600C7749A /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -193,6 +201,7 @@
 		C2E9F6A72618B9AD00D31B50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C27E0318262B6D1200C7749A /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,12 +340,15 @@
 				C2E9F751261A1C4800D31B50 /* AuthenticationViewModel.swift in Sources */,
 				C2E9F6B02618BB4E00D31B50 /* SearchController.swift in Sources */,
 				C2E9F68E2618B93200D31B50 /* AppDelegate.swift in Sources */,
+				C27E0319262B6D1300C7749A /* User.swift in Sources */,
 				C2E9F6B92618BB7500D31B50 /* ProfileController.swift in Sources */,
+				C27E0316262B6B2F00C7749A /* Constants.swift in Sources */,
 				C2E9F6AD2618BB3D00D31B50 /* FeedController.swift in Sources */,
 				C2E9F6A92618B9E100D31B50 /* MainTabController.swift in Sources */,
 				C2E9F7422618D00900D31B50 /* Extensions.swift in Sources */,
 				C27EEF3A2622141300C7749A /* ImageUploader.swift in Sources */,
 				C27EEF3D2622141B00C7749A /* AuthService.swift in Sources */,
+				C27E0313262B6AB600C7749A /* UserService.swift in Sources */,
 				C27EEF4026232FB800C7749A /* ProfileCell.swift in Sources */,
 				C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */,
 				C2E9F74A2619F94B00D31B50 /* RegistrationController.swift in Sources */,
