@@ -61,6 +61,7 @@ extension ProfileController {
             return UICollectionReusableView()
         }
         
+        header.delegate = self
         header.viewModel = ProfileHeaderViewModel(user: user)
         return header
     }
@@ -85,5 +86,19 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 240)
+    }
+}
+
+extension ProfileController: ProfileHeaderDelegate {
+    func header(_ profileHeader: ProfileHeader, didTapActionButtonFor user: User) {
+        if user.isCurrentUser {
+            
+        } else if user.isFollowed {
+            
+        } else {
+            UserService.follow(uid: user.uid) { error in
+                
+            }
+        }
     }
 }
