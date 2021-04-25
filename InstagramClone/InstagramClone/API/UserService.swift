@@ -23,7 +23,6 @@ struct UserService {
             guard let snapshot = snapshot else { return }
             
             let users: [User] = snapshot.documents.compactMap { User(dictionary: $0.data()) }
-            print(users)
             completion(users)
         }
     }
