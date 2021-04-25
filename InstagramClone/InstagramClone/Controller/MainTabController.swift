@@ -29,7 +29,7 @@ final class MainTabController: UITabBarController {
 
     // MARK: API
     private func fetchUser() {
-        UserService.fetchUsers { user in
+        UserService.fetchUser { user in
             self.user = user
         }
     }

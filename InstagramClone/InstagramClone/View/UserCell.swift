@@ -11,6 +11,15 @@ final class UserCell: UITableViewCell {
     static let identifier: String = "UserCell"
     
     // MARK: - Properties
+    var user: User? {
+        didSet {
+            guard let user = user else { return }
+            
+            usernameLabel.text = user.username
+            fullnameLabel.text = user.fullname
+        }
+    }
+    
     private let profileImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFill

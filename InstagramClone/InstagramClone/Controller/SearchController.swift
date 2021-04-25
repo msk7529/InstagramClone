@@ -9,12 +9,22 @@ import UIKit
 
 final class SearchController: UITableViewController {
     // MARK: - Properties
+    private var users: [User] = []
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
+        fetchUsers()
+    }
+    
+    // MARK: - API
+    private func fetchUsers() {
+        UserService.fetchUsers { users in
+            self.users = users
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Helpers
@@ -29,13 +39,15 @@ final class SearchController: UITableViewController {
 // MARK: - UITableViewDataSource
 extension SearchController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as? UserCell else {
             return UITableViewCell()
         }
+        
+        cell.user = users[indexPath.row]
         return cell
     }
 }
