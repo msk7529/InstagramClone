@@ -56,7 +56,6 @@ final class ProfileHeader: UICollectionReusableView {
         let label: UILabel = .init()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.attributedText = attributedStatText(value: 1, label: "posts")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -65,7 +64,6 @@ final class ProfileHeader: UICollectionReusableView {
         let label: UILabel = .init()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.attributedText = attributedStatText(value: 2, label: "followers")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,7 +72,6 @@ final class ProfileHeader: UICollectionReusableView {
         let label: UILabel = .init()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.attributedText = attributedStatText(value: 1, label: "following")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -199,11 +196,9 @@ final class ProfileHeader: UICollectionReusableView {
         editProfileFollowButton.setTitle(viewModel.followButtonText, for: .normal)
         editProfileFollowButton.setTitleColor(viewModel.followButtonTextColor, for: .normal)
         editProfileFollowButton.backgroundColor = viewModel.followButtonBackgroundColor
-    }
-    
-    private func attributedStatText(value: Int, label: String) -> NSAttributedString {
-        let attributedText: NSMutableAttributedString = .init(string: "\(value)\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: label, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.lightGray]))
-        return attributedText
+        
+        postLabel.attributedText = viewModel.numberOfPosts
+        followersLabel.attributedText = viewModel.numberOfFollowers
+        followingLabel.attributedText = viewModel.numberOfFollowing
     }
 }
