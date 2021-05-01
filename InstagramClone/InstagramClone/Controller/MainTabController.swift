@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import YPImagePicker
 
 final class MainTabController: UITabBarController {
     // MARK: Properties
@@ -49,6 +50,8 @@ final class MainTabController: UITabBarController {
     
     // MARK: Helpers
     private func configureViewControllers(withUser user: User) {
+        self.delegate = self
+        
         let feedVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "home_unselected")!, selectedImg: UIImage(named: "home_selected")!, rootVC: FeedController(collectionViewLayout: UICollectionViewFlowLayout()))
         // collectionVC는 생성시에 반드시 flowLayout을 지정해주어야 함(layout말고 flowLayout으로.)
         let searchVC: UINavigationController = templateNavigationController(unselectedImg: UIImage(named: "search_unselected")!, selectedImg: UIImage(named: "search_selected")!, rootVC: SearchController())
@@ -67,6 +70,15 @@ final class MainTabController: UITabBarController {
         navigationVC.navigationBar.tintColor = .black
         return navigationVC
     }
+    
+    private func didFinishPickingMeida(_ picker: YPImagePicker) {
+        picker.didFinishPicking { items, _ in
+            picker.dismiss(animated: true) {
+                guard let selectedImage = items.singlePhoto?.image else { return }
+                print("Selected Image : \(selectedImage)")
+            }
+        }
+    }
 }
 
 // MARK: - AuthenticationDelegate
@@ -75,5 +87,32 @@ extension MainTabController: AuthenticationDelegate {
         print("DEBUG: Auth did complete. Fetch user and update here...")
         fetchUser()
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITabBarControllerDelegate
+extension MainTabController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let selectedVC = (viewController as? UINavigationController)?.viewControllers.first else {
+            return false
+        }
+        //if let index = self.viewControllers?.firstIndex(of: viewController), index == 2 {
+        if let _ = selectedVC as? ImageSelectorController {
+            var config: YPImagePickerConfiguration = .init()
+            config.library.mediaType = .photo
+            config.shouldSaveNewPicturesToAlbum = false
+            config.startOnScreen = .library
+            config.screens = [.library]
+            config.hidesStatusBar = false
+            config.hidesBottomBar = false
+            config.library.maxNumberOfItems = 1
+            
+            let picker: YPImagePicker = .init(configuration: config)
+            picker.modalPresentationStyle = .fullScreen
+            present(picker, animated: true, completion: nil)
+            
+            didFinishPickingMeida(picker)
+        }
+        return true
     }
 }
