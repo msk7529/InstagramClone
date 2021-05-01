@@ -18,8 +18,11 @@ final class UploadPostController: UIViewController {
         return imageView
     }()
     
-    private let captionTextView: UITextView = {
-        let textView: UITextView = .init()
+    private lazy var captionTextView: InputTextView = {
+        let textView: InputTextView = .init()
+        textView.delegate = self
+        textView.placeholderText = "Enter caption.."
+        textView.font = .systemFont(ofSize: 16)
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -64,7 +67,13 @@ final class UploadPostController: UIViewController {
         captionTextView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
         characterCountLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12).isActive = true
-        characterCountLabel.bottomAnchor.constraint(equalTo: self.captionTextView.bottomAnchor).isActive = true
+        characterCountLabel.bottomAnchor.constraint(equalTo: self.captionTextView.bottomAnchor, constant: 8).isActive = true
+    }
+    
+    private func checkMaxLength(_ textView: UITextView) {
+        if textView.text.count > 100 {
+            textView.deleteBackward()
+        }
     }
     
     // MARK: - Actions
@@ -74,5 +83,17 @@ final class UploadPostController: UIViewController {
     
     @objc private func didTapDone() {
         
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension UploadPostController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        checkMaxLength(textView)
+        
+        let count: Int = textView.text.count
+        characterCountLabel.text = "\(count)/100"
+        
+        //captionTextView.placeholderLabel.isHidden = !captionTextView.text.isEmpty
     }
 }
