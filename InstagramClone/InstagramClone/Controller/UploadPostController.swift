@@ -13,7 +13,8 @@ protocol UploadPostControllerDelegate: class {
 
 final class UploadPostController: UIViewController {
     // MARK: - Properties
-    weak var delegate: UploadPostControllerDelegate?
+    //weak var delegate: UploadPostControllerDelegate?
+    var uploadPostCompleted: ((UploadPostController) -> Void)?
     
     var selectedImage: UIImage? {
         didSet {
@@ -101,7 +102,8 @@ final class UploadPostController: UIViewController {
                 return
             }
             
-            self.delegate?.controllerDidFinishUploadingPost(self)
+            //self.delegate?.controllerDidFinishUploadingPost(self)
+            self.uploadPostCompleted?(self)
         }
     }
 }

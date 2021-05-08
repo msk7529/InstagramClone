@@ -77,8 +77,14 @@ final class MainTabController: UITabBarController {
                 guard let selectedImage = items.singlePhoto?.image else { return }
                 
                 let uploadPostVC: UploadPostController = .init()
-                uploadPostVC.delegate = self
                 uploadPostVC.selectedImage = selectedImage
+                uploadPostVC.uploadPostCompleted = { [weak self] controller in
+                    guard let strongSelf = self else { return }
+                    
+                    strongSelf.selectedIndex = 0
+                    controller.dismiss(animated: true, completion: nil)
+                }
+                //uploadPostVC.delegate = self
                 
                 let nav: UINavigationController = .init(rootViewController: uploadPostVC)
                 nav.modalPresentationStyle = .fullScreen
