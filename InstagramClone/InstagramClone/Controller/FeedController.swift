@@ -67,6 +67,8 @@ extension FeedController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
             return UICollectionViewCell()
         }
+        
+        cell.viewModel = PostViewModel(post: posts[indexPath.row])
         return cell
     }
 }

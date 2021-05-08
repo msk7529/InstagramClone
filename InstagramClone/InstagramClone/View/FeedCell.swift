@@ -12,13 +12,18 @@ final class FeedCell: UICollectionViewCell {
     // - MARK: Properties
     static let identifier: String = "FeedCell"
     
+    var viewModel: PostViewModel? {
+        didSet {
+            self.configure()
+        }
+    }
+    
     private let profileImageView: UIImageView = {
         let imageView: UIImageView  = .init()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "venom-7")
         imageView.layer.cornerRadius = 40 / 2
         return imageView
     }()
@@ -82,7 +87,6 @@ final class FeedCell: UICollectionViewCell {
     private let captionLabel: UILabel = {
         let label: UILabel = .init()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Some test caption for now.."
         label.font = .systemFont(ofSize: 14)
         return label
     }()
@@ -160,4 +164,10 @@ final class FeedCell: UICollectionViewCell {
     }
     
     // - MARK: Helpers
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        captionLabel.text = viewModel.caption
+        postImageView.sd_setImage(with: viewModel.imageUrl, completed: nil)
+    }
 }
