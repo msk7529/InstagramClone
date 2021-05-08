@@ -7,12 +7,10 @@
 //
 
 import UIKit
-
-
-//import JGProgressHUD
+import JGProgressHUD
 
 extension UIViewController {
-    //static let hud = JGProgressHUD(style: .dark)
+    static let hud: JGProgressHUD = .init(style: .dark)     // extension에 저장프로퍼티를 선언하고 싶을땐 static으로.
     
     func configureGradientLayer() {
         let gradient: CAGradientLayer = .init()
@@ -22,15 +20,15 @@ extension UIViewController {
         gradient.frame = view.frame
     }
     
-//    func showLoader(_ show: Bool) {
-//        view.endEditing(true)
-//
-//        if show {
-//            UIViewController.hud.show(in: view)
-//        } else {
-//            UIViewController.hud.dismiss()
-//        }
-//    }
+    func showLoader(_ show: Bool) {
+        view.endEditing(true)
+
+        if show {
+            UIViewController.hud.show(in: view)
+        } else {
+            UIViewController.hud.dismiss()
+        }
+    }
     
     func showMessage(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

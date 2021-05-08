@@ -96,7 +96,11 @@ final class UploadPostController: UIViewController {
     @objc private func didTapDone() {
         guard let image = selectedImage, let caption = captionTextView.text else { return }
         
+        showLoader(true)
+        
         PostService.uploadPost(caption: caption, image: image) { error in
+            self.showLoader(false)  // indicator hide 처리는 error와 관계없이 수행되어야 함.
+            
             if let error = error {
                 print(error.localizedDescription)
                 return
