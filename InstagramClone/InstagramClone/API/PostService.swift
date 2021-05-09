@@ -23,10 +23,29 @@ struct PostService {
     
     static func fetchPosts(completion: @escaping([Post]) -> Void) {
         COLLECTION_POSTS.getDocuments { (snapshot, error) in
+            // 강의에서는 uploadPost 메서드에서 ownerImageUrl, ownerUsername 필드를 추가해주는 방식을 사용.
             guard let documents = snapshot?.documents else { return }
             
-            let posts: [Post] = documents.map { Post(postId: $0.documentID, dictionary: $0.data()) }
-            completion(posts)
+            DispatchQueue.global().async {
+                var posts: [Post] = []
+                documents.forEach {
+                    var dic: [String: Any] = $0.data()
+                    let documentID: String = $0.documentID
+                    
+                    let ownerUid: String = dic["ownerUid"] as? String ?? ""
+                    UserService.fetchCertainUser(targetUid: ownerUid) { user in
+                        dic["ownerImageUrl"] = user.profileImageUrl
+                        dic["ownerUsername"] = user.username
+                        posts.append(Post(postId: documentID, dictionary: dic))
+                        
+                        if posts.count == documents.count {
+                            DispatchQueue.main.async {
+                                completion(posts)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
