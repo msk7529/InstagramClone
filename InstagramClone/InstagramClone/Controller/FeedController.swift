@@ -24,7 +24,9 @@ final class FeedController: UICollectionViewController {
     // - MARK: API
     private func fetchPosts() {
         PostService.fetchPosts { posts in
+            print("Debug: Did fetch posts")
             self.posts = posts
+            self.collectionView.refreshControl?.endRefreshing()
             self.collectionView.reloadData()
         }
     }
@@ -37,6 +39,11 @@ final class FeedController: UICollectionViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.title = "Feed"
+        
+        let refresher: UIRefreshControl = .init()
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
+        collectionView.refreshControl = refresher
     }
     
     // - MARK: Actions
@@ -55,6 +62,11 @@ final class FeedController: UICollectionViewController {
             print("DEBUG: Failed to sign out")
         }
     }
+    
+    @objc private func handleRefresh() {
+        posts.removeAll()
+        fetchPosts()
+    }
 }
 
 // - MARK: UICollectionViewDataSource
@@ -68,7 +80,10 @@ extension FeedController {
             return UICollectionViewCell()
         }
         
-        cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        if posts.count > indexPath.row {
+            // refresh시 크래시 방어 코드
+            cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        }
         return cell
     }
 }
