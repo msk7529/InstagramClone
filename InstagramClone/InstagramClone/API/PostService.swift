@@ -50,4 +50,36 @@ struct PostService {
             }
         }
     }
+    
+    static func fetchPosts(forUser uid: String, completion: @escaping ([Post]) -> Void) {
+        let query: Query = COLLECTION_POSTS
+            //.order(by: "timestamp", descending: true)  버그가 있어서 제거
+            .whereField("ownerUid", isEqualTo: uid)
+        
+        query.getDocuments { (snapshot, error) in
+            guard let documents = snapshot?.documents else { return }
+            
+            DispatchQueue.global().async {
+                var posts: [Post] = []
+                documents.forEach {
+                    var dic: [String: Any] = $0.data()
+                    let documentID: String = $0.documentID
+                    
+                    UserService.fetchCertainUser(targetUid: uid) { user in
+                        dic["ownerImageUrl"] = user.profileImageUrl
+                        dic["ownerUsername"] = user.username
+                        posts.append(Post(postId: documentID, dictionary: dic))
+                        
+                        if posts.count == documents.count {
+                            DispatchQueue.main.async {
+                                // 여기서 한번 더 sort 처리
+                                posts.sort { $0.timestamp.compare($1.timestamp) == .orderedDescending }
+                                completion(posts)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

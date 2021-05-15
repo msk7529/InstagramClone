@@ -12,6 +12,7 @@ final class FeedController: UICollectionViewController {
     
     // - MARK: Properties
     private var posts: [Post] = []
+    var post: Post?     // nil이 아니면 해당 포스트 한개만 노출되도록.
     
     // - MARK: LifeCycle
     override func viewDidLoad() {
@@ -23,6 +24,8 @@ final class FeedController: UICollectionViewController {
     
     // - MARK: API
     private func fetchPosts() {
+        guard self.post == nil else { return }
+        
         PostService.fetchPosts { posts in
             print("Debug: Did fetch posts")
             self.posts = posts
@@ -37,9 +40,12 @@ final class FeedController: UICollectionViewController {
 
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.title = "Feed"
-        
+        if post == nil {
+            // ProfileVC 로부터 push 될 때 back버튼 가려지는 문제 수정
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+            navigationItem.title = "Feed"
+        }
+
         let refresher: UIRefreshControl = .init()
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         
@@ -72,7 +78,7 @@ final class FeedController: UICollectionViewController {
 // - MARK: UICollectionViewDataSource
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        return post == nil ? posts.count : 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -80,9 +86,13 @@ extension FeedController {
             return UICollectionViewCell()
         }
         
-        if posts.count > indexPath.row {
-            // refresh시 크래시 방어 코드
-            cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        if let post = post {
+            cell.viewModel = PostViewModel(post: post)
+        } else {
+            if posts.count > indexPath.row {
+                // refresh시 크래시 방어 코드
+                cell.viewModel = PostViewModel(post: posts[indexPath.row])
+            }
         }
         return cell
     }
