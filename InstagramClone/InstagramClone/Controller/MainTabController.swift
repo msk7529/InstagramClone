@@ -83,6 +83,11 @@ final class MainTabController: UITabBarController {
                     
                     strongSelf.selectedIndex = 0
                     controller.dismiss(animated: true, completion: nil)
+                    
+                    guard let feedNav = strongSelf.viewControllers?.first as? UINavigationController, let feedVC = feedNav.viewControllers.first as? FeedController else {
+                        return
+                    }
+                    feedVC.handleRefresh()
                 }
                 //uploadPostVC.delegate = self
                 

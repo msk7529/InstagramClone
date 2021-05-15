@@ -22,7 +22,7 @@ struct PostService {
     }
     
     static func fetchPosts(completion: @escaping([Post]) -> Void) {
-        COLLECTION_POSTS.getDocuments { (snapshot, error) in
+        COLLECTION_POSTS.order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
             // 강의에서는 uploadPost 메서드에서 ownerImageUrl, ownerUsername 필드를 추가해주는 방식을 사용.
             guard let documents = snapshot?.documents else { return }
             
@@ -40,6 +40,8 @@ struct PostService {
                         
                         if posts.count == documents.count {
                             DispatchQueue.main.async {
+                                // 여기서 한번 더 sort 처리
+                                posts.sort { $0.timestamp.compare($1.timestamp) == .orderedDescending }
                                 completion(posts)
                             }
                         }
