@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol FeedCellDelegate: class {
+    // navigationController에서 pushVC는 cell에서 할 수 없고, VC에서만 가능.
+    func cell(_ cell: FeedCell, wantsToShowCommentFor post: Post)
+}
+
 final class FeedCell: UICollectionViewCell {
     
     // - MARK: Properties
     static let identifier: String = "FeedCell"
+    
+    weak var delegate: FeedCellDelegate?
     
     var viewModel: PostViewModel? {
         didSet {
@@ -62,7 +69,7 @@ final class FeedCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "comment"), for: .normal)
         button.tintColor = .black
-        button.addTarget(self, action: #selector(didTapUserName), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapComments), for: .touchUpInside)
         return button
     }()
     
@@ -159,6 +166,12 @@ final class FeedCell: UICollectionViewCell {
     // - MARK: Actions
     @objc private func didTapUserName() {
         
+    }
+    
+    @objc private func didTapComments() {
+        guard let viewModel = viewModel else { return }
+        
+        delegate?.cell(self, wantsToShowCommentFor: viewModel.post)
     }
     
     // - MARK: Helpers

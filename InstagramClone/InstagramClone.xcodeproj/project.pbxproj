@@ -24,6 +24,8 @@
 		C28F48B2263DCCF2005E7490 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F48B1263DCCF2005E7490 /* UploadPostController.swift */; };
 		C28F48B5263DCFBD005E7490 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F48B4263DCFBD005E7490 /* InputTextView.swift */; };
 		C2B0E4B02635D547002CC272 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0E4AF2635D547002CC272 /* UserCellViewModel.swift */; };
+		C2E8019F2651694900B66C63 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8019E2651694900B66C63 /* CommentController.swift */; };
+		C2E801A226516AC000B66C63 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E801A126516AC000B66C63 /* CommentCell.swift */; };
 		C2E9F68E2618B93200D31B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F68D2618B93200D31B50 /* AppDelegate.swift */; };
 		C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F68F2618B93200D31B50 /* SceneDelegate.swift */; };
 		C2E9F6922618B93200D31B50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E9F6912618B93200D31B50 /* ViewController.swift */; };
@@ -62,6 +64,8 @@
 		C28F48B1263DCCF2005E7490 /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		C28F48B4263DCFBD005E7490 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		C2B0E4AF2635D547002CC272 /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
+		C2E8019E2651694900B66C63 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		C2E801A126516AC000B66C63 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		C2E9F68A2618B93200D31B50 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E9F68D2618B93200D31B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2E9F68F2618B93200D31B50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 				C2E9F7442619F92300D31B50 /* Authentication */,
 				C2E9F6A82618B9E100D31B50 /* MainTabController.swift */,
 				C2E9F6AC2618BB3D00D31B50 /* FeedController.swift */,
+				C2E8019E2651694900B66C63 /* CommentController.swift */,
 				C2E9F6AF2618BB4E00D31B50 /* SearchController.swift */,
 				C2E9F6B22618BB5E00D31B50 /* ImageSelectorController.swift */,
 				C28F48B1263DCCF2005E7490 /* UploadPostController.swift */,
@@ -215,6 +220,7 @@
 			children = (
 				C27EEF4226232FCA00C7749A /* Profile */,
 				C2E9F73D2618CE9B00D31B50 /* FeedCell.swift */,
+				C2E801A126516AC000B66C63 /* CommentCell.swift */,
 				C27E0360262B8E8800C7749A /* UserCell.swift */,
 				C2E9F74C261A071800D31B50 /* CustomTextField.swift */,
 			);
@@ -357,6 +363,7 @@
 				C249CF6126470C4E001AAF92 /* PostViewModel.swift in Sources */,
 				C2E9F74D261A071800D31B50 /* CustomTextField.swift in Sources */,
 				C27EEF4426232FDA00C7749A /* ProfileHeader.swift in Sources */,
+				C2E8019F2651694900B66C63 /* CommentController.swift in Sources */,
 				C28F48B2263DCCF2005E7490 /* UploadPostController.swift in Sources */,
 				C2E9F6922618B93200D31B50 /* ViewController.swift in Sources */,
 				C2E9F7462619F93B00D31B50 /* LoginController.swift in Sources */,
@@ -384,6 +391,7 @@
 				C27EEF4026232FB800C7749A /* ProfileCell.swift in Sources */,
 				C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */,
 				C2E9F74A2619F94B00D31B50 /* RegistrationController.swift in Sources */,
+				C2E801A226516AC000B66C63 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

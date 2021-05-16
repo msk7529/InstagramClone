@@ -86,6 +86,8 @@ extension FeedController {
             return UICollectionViewCell()
         }
         
+        cell.delegate = self
+
         if let post = post {
             cell.viewModel = PostViewModel(post: post)
         } else {
@@ -107,5 +109,13 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
         // 8 + 40 + 8 : 프로필이미지뷰와 패딩 높이
         // 50 + 60 : 그 아래 높이
         return CGSize(width: width, height: height)
+    }
+}
+
+// - MARK: FeedCellDelegate
+extension FeedController: FeedCellDelegate {
+    func cell(_ cell: FeedCell, wantsToShowCommentFor post: Post) {
+        let commentVC: CommentController = .init(collectionViewLayout: UICollectionViewFlowLayout())
+        self.navigationController?.pushViewController(commentVC, animated: true)
     }
 }
