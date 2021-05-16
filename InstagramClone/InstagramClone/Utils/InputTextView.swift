@@ -22,14 +22,24 @@ final class InputTextView: UITextView {
         return label
     }()
     
+    var placeholderShouldCenter: Bool = false {
+        didSet {
+            if placeholderShouldCenter {
+                placeholderLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+                placeholderLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+                placeholderLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            } else {
+                placeholderLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 6).isActive = true
+                placeholderLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+            }
+        }
+    }
+    
     // MARK: - LifeCycle
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         
         self.addSubview(placeholderLabel)
-        
-        placeholderLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 6).isActive = true
-        placeholderLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleTextDidChange), name: UITextView.textDidChangeNotification, object: nil)
     }
