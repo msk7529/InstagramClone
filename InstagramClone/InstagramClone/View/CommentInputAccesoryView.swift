@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol CommentInputAccesoryViewDelegate: AnyObject {
+    func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String)
+}
+
 final class CommentInputAccesoryView: UIView {
     
     // MARK: - Properties
+    
+    weak var delegate: CommentInputAccesoryViewDelegate?
+    
     private let divider: UIView = {
         let view: UIView = .init()
         view.backgroundColor = .lightGray
@@ -17,7 +24,7 @@ final class CommentInputAccesoryView: UIView {
         return view
     }()
     
-    private let commentTextView: InputTextView = {
+    public let commentTextView: InputTextView = {
         let textView: InputTextView = .init()
         textView.placeholderShouldCenter = true
         textView.placeholderText = "Enter comment.."
@@ -32,7 +39,7 @@ final class CommentInputAccesoryView: UIView {
         button.setTitle("Post", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        button.addTarget(self, action: #selector(handleCommentUpload), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handlePostTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -45,6 +52,7 @@ final class CommentInputAccesoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .systemBackground
         self.autoresizingMask = .flexibleHeight
         
         self.addSubview(divider)
@@ -72,7 +80,13 @@ final class CommentInputAccesoryView: UIView {
     }
     
     // MARK: - Actions
-    @objc private func handleCommentUpload() {
-        
+    @objc private func handlePostTapped() {
+        delegate?.inputView(self, wantsToUploadComment: commentTextView.text ?? "")
+    }
+    
+    // MARK: - Helpers
+    func clearCommentTextView() {
+        commentTextView.text = nil
+        commentTextView.placeholderLabel.isHidden = false
     }
 }

@@ -14,6 +14,7 @@ final class CommentController: UICollectionViewController {
         let frame: CGRect = .init(x: 0, y: 0, width: view.frame.width, height: 50)
         let inputView: CommentInputAccesoryView = .init(frame: frame)
         inputView.translatesAutoresizingMaskIntoConstraints = false
+        inputView.delegate = self
         return inputView
     }()
     
@@ -53,13 +54,16 @@ final class CommentController: UICollectionViewController {
             
         collectionView.backgroundColor = .systemBackground
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: CommentCell.identifier)
+        collectionView.alwaysBounceVertical = true  // bounds on
+        //collectionView.keyboardDismissMode = .interactive   // 드래그에 따라 키보드가 조절되게끔 하는 옵션
+        collectionView.keyboardDismissMode = .onDrag
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension CommentController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,5 +78,12 @@ extension CommentController {
 extension CommentController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 80)
+    }
+}
+
+// MARK: - CommentInputAccesoryViewDelegate
+extension CommentController: CommentInputAccesoryViewDelegate {
+    func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String) {
+        inputView.clearCommentTextView()
     }
 }
