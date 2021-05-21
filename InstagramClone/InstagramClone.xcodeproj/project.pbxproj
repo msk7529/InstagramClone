@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		71A79200497EBB14F676D4BF /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB35DACBCA938D1C8BDA2560 /* Pods_InstagramClone.framework */; };
+		C22A44042657F1C5000A6630 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44032657F1C5000A6630 /* CommentService.swift */; };
 		C249CF5A2646ED22001AAF92 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249CF592646ED22001AAF92 /* PostService.swift */; };
 		C249CF5E26470113001AAF92 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249CF5D26470113001AAF92 /* Post.swift */; };
 		C249CF6126470C4E001AAF92 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249CF6026470C4E001AAF92 /* PostViewModel.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		4205C6775079BDAD21814D5F /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
+		C22A44032657F1C5000A6630 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		C249CF592646ED22001AAF92 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		C249CF5D26470113001AAF92 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C249CF6026470C4E001AAF92 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				C27EEF392622141300C7749A /* ImageUploader.swift */,
 				C27EEF3C2622141B00C7749A /* AuthService.swift */,
 				C27E0312262B6AB600C7749A /* UserService.swift */,
+				C22A44032657F1C5000A6630 /* CommentService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				C2E9F7462619F93B00D31B50 /* LoginController.swift in Sources */,
 				C2E9F73E2618CE9B00D31B50 /* FeedCell.swift in Sources */,
 				C2E9F6B32618BB5E00D31B50 /* ImageSelectorController.swift in Sources */,
+				C22A44042657F1C5000A6630 /* CommentService.swift in Sources */,
 				C2E9F6B62618BB6600D31B50 /* NotificationController.swift in Sources */,
 				C2E9F751261A1C4800D31B50 /* AuthenticationViewModel.swift in Sources */,
 				C27E0361262B8E8800C7749A /* UserCell.swift in Sources */,
