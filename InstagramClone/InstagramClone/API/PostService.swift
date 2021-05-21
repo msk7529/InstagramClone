@@ -33,7 +33,7 @@ struct PostService {
                     let documentID: String = $0.documentID
                     
                     let ownerUid: String = dic["ownerUid"] as? String ?? ""
-                    UserService.fetchCertainUser(targetUid: ownerUid) { user in
+                    UserService.fetchUser(withUid: ownerUid) { user in
                         dic["ownerImageUrl"] = user.profileImageUrl
                         dic["ownerUsername"] = user.username
                         posts.append(Post(postId: documentID, dictionary: dic))
@@ -65,7 +65,7 @@ struct PostService {
                     var dic: [String: Any] = $0.data()
                     let documentID: String = $0.documentID
                     
-                    UserService.fetchCertainUser(targetUid: uid) { user in
+                    UserService.fetchUser(withUid: uid) { user in
                         dic["ownerImageUrl"] = user.profileImageUrl
                         dic["ownerUsername"] = user.username
                         posts.append(Post(postId: documentID, dictionary: dic))
