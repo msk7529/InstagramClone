@@ -11,6 +11,12 @@ final class CommentCell: UICollectionViewCell {
     // MARK: - Properties
     static let identifier: String = "CommentCell"
     
+    var viewModel: CommentViewModel? {
+        didSet {
+            configure()
+        }
+    }
+    
     private let profileImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFill
@@ -22,9 +28,7 @@ final class CommentCell: UICollectionViewCell {
     
     private let commentLabel: UILabel = {
         let label: UILabel = .init()
-        let attributedString: NSMutableAttributedString = .init(string: "joker ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedString.append(NSAttributedString(string: "Some test comment for now..", attributes: [.font: UIFont.systemFont(ofSize: 14)]))
-        label.attributedText = attributedString
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -43,10 +47,20 @@ final class CommentCell: UICollectionViewCell {
         profileImageView.layer.cornerRadius = 40 / 2
         
         commentLabel.leftAnchor.constraint(equalTo: self.profileImageView.rightAnchor, constant: 8).isActive = true
+        commentLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 8).isActive = true
         commentLabel.centerYAnchor.constraint(equalTo: self.profileImageView.centerYAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Helpers
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl, completed: nil)
+        commentLabel.attributedText = viewModel.commentLabelText()
+    }
+
 }
