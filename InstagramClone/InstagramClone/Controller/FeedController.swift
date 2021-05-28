@@ -123,7 +123,9 @@ extension FeedController: FeedCellDelegate {
         cell.viewModel?.post.didLike.toggle()   // 강의에서는 PostViewModel의 post가 let인데도 되던데..
         
         if post.didLike {
-            
+            PostService.unlikePost(post: post) { _ in
+                cell.updateLikeButton(didLike: false)
+            }
         } else {
             PostService.likePost(post: post) { _ in
                 cell.updateLikeButton(didLike: true)
