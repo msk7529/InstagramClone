@@ -58,7 +58,6 @@ final class FeedCell: UICollectionViewCell {
         let button: UIButton = .init(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "like_unselected"), for: .normal)
-        button.setImage(UIImage(named: "like_selected"), for: .selected)
         button.tintColor = .black
         button.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
         return button
@@ -191,5 +190,15 @@ final class FeedCell: UICollectionViewCell {
         userNameButton.setTitle(viewModel.username, for: .normal)
         
         likesLabel.text = viewModel.likesLabelText
+    }
+    
+    func updateLikeButton(didLike: Bool) {
+        if didLike {
+            likeButton.setImage(UIImage(named: "like_selected"), for: .normal)
+            likeButton.tintColor = .red
+        } else {
+            likeButton.setImage(UIImage(named: "like_unselected"), for: .normal)
+            likeButton.tintColor = .black
+        }
     }
 }
