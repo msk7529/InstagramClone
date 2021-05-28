@@ -15,6 +15,7 @@ struct Post {
     let postId: String
     let ownerImageUrl: String
     let ownerUsername: String
+    var didLike: Bool = false
     
     init(postId: String, dictionary: [String: Any]) {
         self.postId = postId    // postId는 firestore에 저장시 자동으로 생성되는 값

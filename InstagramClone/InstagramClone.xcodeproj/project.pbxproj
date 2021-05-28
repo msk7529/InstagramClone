@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		71A79200497EBB14F676D4BF /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB35DACBCA938D1C8BDA2560 /* Pods_InstagramClone.framework */; };
 		C22A44042657F1C5000A6630 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44032657F1C5000A6630 /* CommentService.swift */; };
 		C22A44062657F589000A6630 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44052657F589000A6630 /* Comment.swift */; };
 		C22A4408265807E1000A6630 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A4407265807E1000A6630 /* CommentViewModel.swift */; };
@@ -26,6 +25,7 @@
 		C27EEF4426232FDA00C7749A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EEF4326232FDA00C7749A /* ProfileHeader.swift */; };
 		C28F48B2263DCCF2005E7490 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F48B1263DCCF2005E7490 /* UploadPostController.swift */; };
 		C28F48B5263DCFBD005E7490 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28F48B4263DCFBD005E7490 /* InputTextView.swift */; };
+		C296904F26615BFD00087DEE /* Pods_InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB35DACBCA938D1C8BDA2560 /* Pods_InstagramClone.framework */; };
 		C2B0E4B02635D547002CC272 /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0E4AF2635D547002CC272 /* UserCellViewModel.swift */; };
 		C2E8019F2651694900B66C63 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8019E2651694900B66C63 /* CommentController.swift */; };
 		C2E801A226516AC000B66C63 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E801A126516AC000B66C63 /* CommentCell.swift */; };
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71A79200497EBB14F676D4BF /* Pods_InstagramClone.framework in Frameworks */,
+				C296904F26615BFD00087DEE /* Pods_InstagramClone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K6448RX2CR;
 				INFOPLIST_FILE = InstagramClone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,6 +579,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K6448RX2CR;
 				INFOPLIST_FILE = InstagramClone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

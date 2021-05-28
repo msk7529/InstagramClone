@@ -118,4 +118,13 @@ extension FeedController: FeedCellDelegate {
         let commentVC: CommentController = .init(post: post)
         self.navigationController?.pushViewController(commentVC, animated: true)
     }
+    
+    func cell(_ cell: FeedCell, didLike post: Post) {
+        cell.viewModel?.post.didLike.toggle()   // 강의에서는 PostViewModel의 post가 let인데도 되던데..
+        if post.didLike {
+            
+        } else {
+            
+        }
+    }
 }

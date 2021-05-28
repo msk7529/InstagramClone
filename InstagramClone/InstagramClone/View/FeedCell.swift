@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol FeedCellDelegate: class {
-    // navigationController에서 pushVC는 cell에서 할 수 없고, VC에서만 가능.
-    func cell(_ cell: FeedCell, wantsToShowCommentFor post: Post)
+protocol FeedCellDelegate: AnyObject {
+    func cell(_ cell: FeedCell, wantsToShowCommentFor post: Post) // navigationController에서 pushVC는 cell에서 할 수 없고, VC에서만 가능.
+    func cell(_ cell: FeedCell, didLike post: Post)
 }
 
 final class FeedCell: UICollectionViewCell {
@@ -60,7 +60,7 @@ final class FeedCell: UICollectionViewCell {
         button.setImage(UIImage(named: "like_unselected"), for: .normal)
         button.setImage(UIImage(named: "like_selected"), for: .selected)
         button.tintColor = .black
-        button.addTarget(self, action: #selector(didTapUserName), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
         return button
     }()
     
@@ -172,6 +172,12 @@ final class FeedCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         delegate?.cell(self, wantsToShowCommentFor: viewModel.post)
+    }
+    
+    @objc private func didTapLike() {
+        guard let viewModel = viewModel else { return }
+        
+        delegate?.cell(self, didLike: viewModel.post)
     }
     
     // - MARK: Helpers
