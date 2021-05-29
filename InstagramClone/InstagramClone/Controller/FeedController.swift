@@ -30,8 +30,29 @@ final class FeedController: UICollectionViewController {
             print("Debug: Did fetch posts")
             self.posts = posts
             self.collectionView.refreshControl?.endRefreshing()
-            self.collectionView.reloadData()
+            self.checkIfUserLikedPost()
         }
+    }
+    
+    private func checkIfUserLikedPost() {
+        var checkedCount: Int = 0
+        
+        self.posts.forEach { post in
+            PostService.checkIfUserLikedPost(post: post) { didLike in
+                checkedCount += 1
+                
+                if let index = self.posts.firstIndex(where: { $0.postId == post.postId }) {
+                    self.posts[index].didLike = didLike
+                }
+                
+                if checkedCount == self.posts.count {
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()    // 강의에선 posts didSet에서 수행하도록 했는데 비효율적인것 같아서 수정
+                    }
+                }
+            }
+        }
+        
     }
     
     // - MARK: Helpers
@@ -125,10 +146,12 @@ extension FeedController: FeedCellDelegate {
         if post.didLike {
             PostService.unlikePost(post: post) { _ in
                 cell.updateLikeButton(didLike: false)
+                cell.viewModel?.post.likes -= 1
             }
         } else {
             PostService.likePost(post: post) { _ in
                 cell.updateLikeButton(didLike: true)
+                cell.viewModel?.post.likes += 1
             }
         }
     }

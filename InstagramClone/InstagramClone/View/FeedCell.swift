@@ -190,6 +190,8 @@ final class FeedCell: UICollectionViewCell {
         userNameButton.setTitle(viewModel.username, for: .normal)
         
         likesLabel.text = viewModel.likesLabelText
+        
+        self.updateLikeButton(didLike: viewModel.post.didLike)
     }
     
     func updateLikeButton(didLike: Bool) {

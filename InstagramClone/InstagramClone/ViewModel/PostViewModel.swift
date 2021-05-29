@@ -37,6 +37,8 @@ struct PostViewModel {
         }
     }
     
+    // 강의에서 likeButtonTintColor, likeButtonImage property 정의.
+    
     init(post: Post) {
         self.post = post
     }
