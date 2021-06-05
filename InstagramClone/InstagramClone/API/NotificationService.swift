@@ -12,16 +12,19 @@ struct NotificationService {
         // 본인에게는 noti를 보내지 않음.
         guard let currentUid = Auth.auth().currentUser?.uid, uid != currentUid else { return }
         
+        let docRef: DocumentReference = COLLECTION_NOTIFICATIONS.document(uid).collection("user-notifications").document()
+        
         var data: [String: Any] = ["timestmap": Timestamp(date: Date()),
                                    "uid": currentUid,
-                                   "type": type.rawValue]
+                                   "type": type.rawValue,
+                                   "id": docRef.documentID]
         
         if let post = post {
             data["postId"] = post.postId
             data["postImageUrl"] = post.imageUrl
         }
         
-        COLLECTION_NOTIFICATIONS.document(uid).collection("user-notifications").addDocument(data: data)
+        docRef.setData(data)
     }
     
     static func fetchNotification() {
