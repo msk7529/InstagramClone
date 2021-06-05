@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C212C2E8266BDEB0004DB6EA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212C2E7266BDEB0004DB6EA /* NotificationCell.swift */; };
 		C212C2EA266BE75D004DB6EA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212C2E9266BE75D004DB6EA /* Notification.swift */; };
+		C212C2EC266BED8E004DB6EA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212C2EB266BED8E004DB6EA /* NotificationService.swift */; };
 		C22A44042657F1C5000A6630 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44032657F1C5000A6630 /* CommentService.swift */; };
 		C22A44062657F589000A6630 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44052657F589000A6630 /* Comment.swift */; };
 		C22A4408265807E1000A6630 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A4407265807E1000A6630 /* CommentViewModel.swift */; };
@@ -56,6 +57,7 @@
 		4205C6775079BDAD21814D5F /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
 		C212C2E7266BDEB0004DB6EA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		C212C2E9266BE75D004DB6EA /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		C212C2EB266BED8E004DB6EA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		C22A44032657F1C5000A6630 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		C22A44052657F589000A6630 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C22A4407265807E1000A6630 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				C27EEF3C2622141B00C7749A /* AuthService.swift */,
 				C27E0312262B6AB600C7749A /* UserService.swift */,
 				C22A44032657F1C5000A6630 /* CommentService.swift */,
+				C212C2EB266BED8E004DB6EA /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				C2E9F6A92618B9E100D31B50 /* MainTabController.swift in Sources */,
 				C2E9F7422618D00900D31B50 /* Extensions.swift in Sources */,
 				C27EEF3A2622141300C7749A /* ImageUploader.swift in Sources */,
+				C212C2EC266BED8E004DB6EA /* NotificationService.swift in Sources */,
 				C249CF5E26470113001AAF92 /* Post.swift in Sources */,
 				C27EEF3D2622141B00C7749A /* AuthService.swift in Sources */,
 				C2E801A52651765200B66C63 /* CommentInputAccesoryView.swift in Sources */,
