@@ -10,6 +10,7 @@ import UIKit
 protocol FeedCellDelegate: AnyObject {
     func cell(_ cell: FeedCell, wantsToShowCommentFor post: Post) // navigationController에서 pushVC는 cell에서 할 수 없고, VC에서만 가능.
     func cell(_ cell: FeedCell, didLike post: Post)
+    func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String)
 }
 
 final class FeedCell: UICollectionViewCell {
@@ -25,7 +26,7 @@ final class FeedCell: UICollectionViewCell {
         }
     }
     
-    private let profileImageView: UIImageView = {
+    private lazy var profileImageView: UIImageView = {
         let imageView: UIImageView  = .init()
         imageView.backgroundColor = .lightGray
         imageView.clipsToBounds = true
@@ -33,6 +34,11 @@ final class FeedCell: UICollectionViewCell {
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 40 / 2
+        
+        let tapGestureRecognizer: UITapGestureRecognizer = .init(target: self, action: #selector(showUserProfile))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        
         return imageView
     }()
     
@@ -41,7 +47,7 @@ final class FeedCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
-        button.addTarget(self, action: #selector(didTapUserName), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showUserProfile), for: .touchUpInside)
         return button
     }()
     
@@ -77,7 +83,7 @@ final class FeedCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "send2"), for: .normal)
         button.tintColor = .black
-        button.addTarget(self, action: #selector(didTapUserName), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(didTapUserName), for: .touchUpInside)
         return button
     }()
     
@@ -163,8 +169,9 @@ final class FeedCell: UICollectionViewCell {
     }
     
     // - MARK: Actions
-    @objc private func didTapUserName() {
-        
+    @objc private func showUserProfile() {
+        guard let viewModel = viewModel else { return }
+        delegate?.cell(self, wantsToShowProfileFor: viewModel.post.ownerUid)
     }
     
     @objc private func didTapComments() {

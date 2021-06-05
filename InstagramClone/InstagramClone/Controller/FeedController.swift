@@ -155,4 +155,11 @@ extension FeedController: FeedCellDelegate {
             }
         }
     }
+    
+    func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String) {
+        UserService.fetchUser(withUid: uid) { user in
+            let profileVC: ProfileController = .init(user: user)
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
 }
