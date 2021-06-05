@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C212C2E8266BDEB0004DB6EA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212C2E7266BDEB0004DB6EA /* NotificationCell.swift */; };
 		C22A44042657F1C5000A6630 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44032657F1C5000A6630 /* CommentService.swift */; };
 		C22A44062657F589000A6630 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A44052657F589000A6630 /* Comment.swift */; };
 		C22A4408265807E1000A6630 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A4407265807E1000A6630 /* CommentViewModel.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		4205C6775079BDAD21814D5F /* Pods-InstagramClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone.debug.xcconfig"; path = "Target Support Files/Pods-InstagramClone/Pods-InstagramClone.debug.xcconfig"; sourceTree = "<group>"; };
+		C212C2E7266BDEB0004DB6EA /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		C22A44032657F1C5000A6630 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		C22A44052657F589000A6630 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C22A4407265807E1000A6630 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				C2E9F73D2618CE9B00D31B50 /* FeedCell.swift */,
 				C2E801A126516AC000B66C63 /* CommentCell.swift */,
 				C27E0360262B8E8800C7749A /* UserCell.swift */,
+				C212C2E7266BDEB0004DB6EA /* NotificationCell.swift */,
 				C2E9F74C261A071800D31B50 /* CustomTextField.swift */,
 				C2E801A42651765200B66C63 /* CommentInputAccesoryView.swift */,
 			);
@@ -406,6 +409,7 @@
 				C27E0313262B6AB600C7749A /* UserService.swift in Sources */,
 				C27EEF4026232FB800C7749A /* ProfileCell.swift in Sources */,
 				C2E9F6902618B93200D31B50 /* SceneDelegate.swift in Sources */,
+				C212C2E8266BDEB0004DB6EA /* NotificationCell.swift in Sources */,
 				C2E9F74A2619F94B00D31B50 /* RegistrationController.swift in Sources */,
 				C2E801A226516AC000B66C63 /* CommentCell.swift in Sources */,
 			);
