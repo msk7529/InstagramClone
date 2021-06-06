@@ -141,6 +141,9 @@ extension FeedController: FeedCellDelegate {
     }
     
     func cell(_ cell: FeedCell, didLike post: Post) {
+        guard let tabBarController = self.tabBarController as? MainTabController, let user = tabBarController.user else {
+            return
+        }
         cell.viewModel?.post.didLike.toggle()   // 강의에서는 PostViewModel의 post가 let인데도 되던데..
         
         if post.didLike {
@@ -153,7 +156,7 @@ extension FeedController: FeedCellDelegate {
                 cell.updateLikeButton(didLike: true)
                 cell.viewModel?.post.likes += 1
                 
-                NotificationService.uploadNotification(toUid: post.ownerUid, type: .like, post: post)
+                NotificationService.uploadNotification(toUid: post.ownerUid, fromUser: user, type: .like, post: post)
             }
         }
     }

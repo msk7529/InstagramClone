@@ -56,6 +56,7 @@ extension NotificationController {
             return UITableViewCell()
         }
         
+        cell.viewModel = NotificationViewModel(notification: notifications[indexPath.row])
         return cell
     }
 }

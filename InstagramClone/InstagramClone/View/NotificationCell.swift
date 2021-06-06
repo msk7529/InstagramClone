@@ -10,6 +10,12 @@ import UIKit
 final class NotificationCell: UITableViewCell {
     // MARK: - Properties
     static let identifier: String = "NotificationCell"
+    
+    var viewModel: NotificationViewModel? {
+        didSet {
+            configure()
+        }
+    }
 
     private let profileImageView: UIImageView = {
         let imageView: UIImageView = .init()
@@ -24,7 +30,7 @@ final class NotificationCell: UITableViewCell {
     private let infoLabel: UILabel = {
         let label: UILabel = .init()
         label.font = .boldSystemFont(ofSize: 14)
-        label.text = "venom"
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -102,5 +108,15 @@ final class NotificationCell: UITableViewCell {
     
     @objc private func handlePostTapped() {
         
+    }
+    
+    // MARK: - Helpers
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl, completed: nil)
+        postImageView.sd_setImage(with: viewModel.postImageUrl, completed: nil)
+        
+        infoLabel.attributedText = viewModel.notificationMessage
     }
 }
