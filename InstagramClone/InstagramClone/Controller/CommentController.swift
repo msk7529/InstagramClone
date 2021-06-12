@@ -122,15 +122,17 @@ extension CommentController: UICollectionViewDelegateFlowLayout {
 // MARK: - CommentInputAccesoryViewDelegate
 extension CommentController: CommentInputAccesoryViewDelegate {
     func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String) {
-        guard let tabBarController = self.tabBarController as? MainTabController, let user = tabBarController.user else {
+        guard let tabBarController = self.tabBarController as? MainTabController, let currentUser = tabBarController.user else {
             return
         }
         
         self.showLoader(true)
         
-        CommentService.uploadComment(comment: comment, postID: post.postId, user: user) { error in
+        CommentService.uploadComment(comment: comment, postID: post.postId, user: currentUser) { error in
             self.showLoader(false)
             inputView.clearCommentTextView()
+            
+            NotificationService.uploadNotification(toUid: self.post.ownerUid, fromUser: currentUser, type: .comment, post: self.post)
         }
     }
 }

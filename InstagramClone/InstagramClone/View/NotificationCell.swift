@@ -80,18 +80,19 @@ final class NotificationCell: UITableViewCell {
         profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
         profileImageView.layer.cornerRadius = 48 / 2
         
-        infoLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        infoLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
-        
         followButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         followButton.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
-        followButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        followButton.widthAnchor.constraint(equalToConstant: 88).isActive = true
         followButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
         postImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         postImageView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -12).isActive = true
         postImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
         postImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        infoLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        infoLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+        infoLabel.rightAnchor.constraint(equalTo: followButton.leftAnchor, constant: -4).isActive = true
         
         followButton.isHidden = true
     }
@@ -118,5 +119,8 @@ final class NotificationCell: UITableViewCell {
         postImageView.sd_setImage(with: viewModel.postImageUrl, completed: nil)
         
         infoLabel.attributedText = viewModel.notificationMessage
+        
+        followButton.isHidden = viewModel.shouldHideFollowButton
+        postImageView.isHidden = viewModel.shouldHidePostImage
     }
 }
