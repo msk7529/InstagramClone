@@ -16,6 +16,8 @@ final class NotificationController: UITableViewController {
         }
     }
     
+    private let refresher: UIRefreshControl = .init()
+    
     // MARK: - Life cycle
 
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ final class NotificationController: UITableViewController {
         self.notifications.forEach { notification in
             guard notification.type == .follow else { return }
             
-            UserService.checkIfUserIsFollowed(uid: notification.id) { isFollowed in
+            UserService.checkIfUserIsFollowed(uid: notification.uid) { isFollowed in
                 if let index = self.notifications.firstIndex(where: { $0.id == notification.id }) {
                     self.notifications[index].userIsFollowd = isFollowed
                 }
@@ -54,9 +56,17 @@ final class NotificationController: UITableViewController {
         tableView.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.identifier)
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
+        
+        self.refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.refreshControl = self.refresher
     }
 
     // MARK: - Actions
+    @objc private func handleRefresh() {
+        notifications.removeAll()
+        fetchNotifications()
+        refresher.endRefreshing()
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -81,9 +91,14 @@ extension NotificationController {
 
 extension NotificationController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showLoader(true)
+        
         let uid: String = notifications[indexPath.row].uid
         
         UserService.fetchUser(withUid: uid) { user in
+            DispatchQueue.main.async {
+                self.showLoader(false)
+            }
             let profileVC: ProfileController = .init(user: user)
             self.navigationController?.pushViewController(profileVC, animated: true)
         }
@@ -94,19 +109,37 @@ extension NotificationController {
 
 extension NotificationController: NotificationCellDelegate {
     func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
+        showLoader(true)
+        
         UserService.follow(uid: uid) { _ in
             cell.viewModel?.notification.userIsFollowd.toggle()
+            
+            DispatchQueue.main.async {
+                self.showLoader(false)
+            }
         }
     }
     
     func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
+        showLoader(true)
+
         UserService.unfollow(uid: uid) { _ in
             cell.viewModel?.notification.userIsFollowd.toggle()
+            
+            DispatchQueue.main.async {
+                self.showLoader(false)
+            }
         }
     }
     
     func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
+        showLoader(true)
+
         PostService.fetchPost(withPostId: postId) { post in
+            DispatchQueue.main.async {
+                self.showLoader(false)
+            }
+            
             let feedVC: FeedController = .init(collectionViewLayout: UICollectionViewFlowLayout())
             feedVC.post = post
             self.navigationController?.pushViewController(feedVC, animated: true)
