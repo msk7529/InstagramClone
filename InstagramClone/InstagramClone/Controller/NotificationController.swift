@@ -25,10 +25,23 @@ final class NotificationController: UITableViewController {
         self.fetchNotifications()
     }
     
-    // MARK: - Helpers
+    // MARK: - API
     private func fetchNotifications() {
         NotificationService.fetchNotification { notifications in
             self.notifications = notifications
+            self.checkUserIfFollowed()
+        }
+    }
+    
+    private func checkUserIfFollowed() {
+        self.notifications.forEach { notification in
+            guard notification.type == .follow else { return }
+            
+            UserService.checkIfUserIsFollowed(uid: notification.id) { isFollowed in
+                if let index = self.notifications.firstIndex(where: { $0.id == notification.id }) {
+                    self.notifications[index].userIsFollowd = isFollowed
+                }
+            }
         }
     }
     
@@ -46,6 +59,8 @@ final class NotificationController: UITableViewController {
     // MARK: - Actions
 }
 
+// MARK: - UITableViewDataSource
+
 extension NotificationController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
@@ -57,6 +72,34 @@ extension NotificationController {
         }
         
         cell.viewModel = NotificationViewModel(notification: notifications[indexPath.row])
+        cell.delegate = self
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
+
+//extension NotificationController {
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//    }
+//}
+
+// MARK: - NotificationCellDelegate
+
+extension NotificationController: NotificationCellDelegate {
+    func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
+        
+    }
+    
+    func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
+        
+    }
+    
+    func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
+        
+    }
+    
+    
+}
+

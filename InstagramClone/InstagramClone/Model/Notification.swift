@@ -33,6 +33,7 @@ struct Notification {
     let timestamp: Timestamp
     let type: NotificationType
     let id: String
+    var userIsFollowd: Bool = false
     
     init(dictionary: [String: Any]) {
         self.timestamp = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
